@@ -19,5 +19,11 @@ env:
 log:
   filePath: /dev/log
   level: warn
-
+web:
+  http:
+    port: 3000
+  https:
+    port: 3003
+    certFile: /path
+    keyFile: /path
 
