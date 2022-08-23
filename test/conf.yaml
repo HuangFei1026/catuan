@@ -1,0 +1,23 @@
+activeEnv: test
+version: 1.0.0
+mysql:
+  debug: 1
+  database:
+    - name: ccy_core
+      host: localhost
+      port: 3306
+      password: xx123456
+redis:
+  - db: 0
+    host: localhost
+    port: 6379
+env:
+  username: huangfei
+  age: 20
+  sex: man
+  address: 重庆
+log:
+  filePath: /dev/log
+  level: warn
+
+
