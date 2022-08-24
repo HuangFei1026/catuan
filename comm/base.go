@@ -9,7 +9,9 @@ type NumberAble interface {
 }
 
 type RespResult struct {
-	ErrCode int
-	ErrMsg  string
-	Data    any
+	ErrCode int    `json:"err_code"`
+	ErrMsg  string `json:"message"`
+	Data    any    `json:"data,omitempty"`
 }
+
+type M[K KeyAble, V any] map[K]V

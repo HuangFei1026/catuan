@@ -1,3 +1,3 @@
 package web
 
-type HandlerFunc func(ctx ContextInf)
+type HandlerFunc func(ctx Context)

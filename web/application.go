@@ -268,7 +268,7 @@ func (a *Application) HttpsServerRun() error {
 	return err
 }
 
-func (a *Application) Router(ctx context.Context, c ContextInf) {
+func (a *Application) Router(ctx context.Context, c Context) {
 	defaultTimeout := time.Second * 5
 	go func() {
 		defer func() {
@@ -294,7 +294,7 @@ func (a *Application) Router(ctx context.Context, c ContextInf) {
 	}
 }
 
-func (a *Application) router(c ContextInf) {
+func (a *Application) router(c Context) {
 	role, ok := a.FindRole(c.RoleLabel())
 	if !ok {
 		c.Result(-1, "access denied,role not found")
@@ -317,4 +317,32 @@ func (a *Application) router(c ContextInf) {
 	if !c.IsNext() {
 		return
 	}
+}
+
+func (a *Application) DBDefault() *gorm.DB {
+	if a.cdbChain == nil || len(a.cdbChain) == 0 {
+		return nil
+	}
+	return a.cdbChain[0]
+}
+
+func (a *Application) GetDB(i int) *gorm.DB {
+	if a.cdbChain == nil || len(a.cdbChain)-1 <= i {
+		return nil
+	}
+	return a.cdbChain[i]
+}
+
+func (a *Application) RedisDefault() *redis.Client {
+	if a.credisChain == nil || len(a.credisChain) == 0 {
+		return nil
+	}
+	return a.credisChain[0]
+}
+
+func (a *Application) GetRedis(i int) *redis.Client {
+	if a.credisChain == nil || len(a.credisChain)-1 <= i {
+		return nil
+	}
+	return a.credisChain[i]
 }
