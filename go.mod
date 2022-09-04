@@ -6,8 +6,9 @@ require (
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/sirupsen/logrus v1.9.0
+	github.com/wechatpay-apiv3/wechatpay-go v0.2.14
 	gopkg.in/yaml.v2 v2.4.0
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
+	gopkg.in/yaml.v3 v3.0.0
 	gorm.io/driver/mysql v1.3.6
 	gorm.io/gorm v1.23.8
 )

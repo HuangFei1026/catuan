@@ -3,7 +3,7 @@ package web
 type GroupInf interface {
 	GroupLabel() string
 	RoleLabel() string
-	Call(c Context)
+	Call(c *Context)
 
 	UseBefore(h HandlerFunc, destAction ...string)
 	FindAction(actionName string) (HandlerFunc, bool)
@@ -36,7 +36,7 @@ func (g *Group) RoleLabel() string {
 	return g.roleName
 }
 
-func (g *Group) Call(c Context) {
+func (g *Group) Call(c *Context) {
 	//执行Before handler
 	if g.commHandlers != nil {
 		for _, h := range g.commHandlers {

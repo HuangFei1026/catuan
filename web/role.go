@@ -1,7 +1,7 @@
 package web
 
 type RoleInf interface {
-	Call(c Context)
+	Call(c *Context)
 	UseBefore(orderNum int, h HandlerFunc)
 	FindBefore() []HandlerFunc
 	RoleLabel() string
@@ -31,7 +31,7 @@ func (r *Role) FindBefore() []HandlerFunc {
 	return r.beforeHandle
 }
 
-func (r *Role) Call(c Context) {
+func (r *Role) Call(c *Context) {
 	if r.beforeHandle != nil {
 		for _, h := range r.beforeHandle {
 			h(c)

@@ -2,7 +2,6 @@ package web
 
 import (
 	"catuan/comm"
-	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
@@ -268,7 +267,7 @@ func (a *Application) HttpsServerRun() error {
 	return err
 }
 
-func (a *Application) Router(ctx context.Context, c Context) {
+func (a *Application) Router(c *Context) {
 	defaultTimeout := time.Second * 5
 	go func() {
 		defer func() {
@@ -289,12 +288,12 @@ func (a *Application) Router(ctx context.Context, c Context) {
 		return
 	case resp := <-c.RespChannel():
 		c.JsonResponse(resp)
-	case <-ctx.Done():
+	case <-c.Done():
 		return
 	}
 }
 
-func (a *Application) router(c Context) {
+func (a *Application) router(c *Context) {
 	role, ok := a.FindRole(c.RoleLabel())
 	if !ok {
 		c.Result(-1, "access denied,role not found")

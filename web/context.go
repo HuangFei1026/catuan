@@ -15,6 +15,14 @@ type Context struct {
 	groupLabel  string
 }
 
+func NewContext(c *gin.Context) *Context {
+	return &Context{
+		Context:  c,
+		isNext:   true,
+		respChan: make(chan *comm.RespResult, 1),
+	}
+}
+
 func (c *Context) InitRoleInfo(roleLabel, groupLabel, actionLabel string) {
 	c.groupLabel = groupLabel
 	c.roleLabel = roleLabel
